@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Época — Ropa Formal Santa Fe</title>
+<meta name="description" content="Época — Ropa formal y de oficina en Santa Fe. Camisas, chombas, trajes y accesorios. Consultá y pedí por WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy: #1F3A5F;
+    --navy-deep: #14263F;
+    --cream: #F6F3EC;
+    --gold: #B9873F;
+    --charcoal: #26282B;
+    --grey: #8A8D93;
+    --line: #E1DBCC;
+    --white: #FFFFFF;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background: var(--cream);
+    color: var(--charcoal);
+    font-family: 'Work Sans', sans-serif;
+    line-height:1.5;
+  }
+  h1,h2,h3, .serif{
+    font-family: 'Cormorant Garamond', serif;
+    font-weight:600;
+    letter-spacing:0.01em;
+  }
+  a{ color:inherit; text-decoration:none; }
+  img{ max-width:100%; display:block; }
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 24px; }
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--gold);
+    outline-offset:3px;
+  }
+
+  /* HEADER */
+  header{
+    background: var(--navy);
+    color: var(--white);
+    position: sticky; top:0; z-index:50;
+  }
+  .headbar{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 24px;
+    max-width:1180px; margin:0 auto;
+  }
+  .logo{
+    font-size:26px; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--white);
+  }
+  .logo span{ color: var(--gold); }
+  nav.cats{
+    display:flex; gap:28px; font-size:14px; letter-spacing:0.03em;
+  }
+  nav.cats a{ opacity:0.85; padding:4px 0; border-bottom:1px solid transparent; transition:.2s; }
+  nav.cats a:hover, nav.cats a.active{ opacity:1; border-color:var(--gold); }
+  .wa-pill{
+    display:flex; align-items:center; gap:8px;
+    background: var(--gold); color: var(--navy-deep);
+    padding:9px 16px; border-radius:30px; font-size:13px; font-weight:600;
+    white-space:nowrap;
+  }
+  .menu-toggle{ display:none; background:none; border:none; color:var(--white); font-size:26px; cursor:pointer; }
+
+  /* HERO */
+  .hero{
+    background: linear-gradient(180deg, var(--navy) 0%, var(--navy-deep) 100%);
+    color: var(--white);
+    padding: 64px 24px 80px;
+    text-align:center;
+    position:relative;
+  }
+  .hero::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0; height:1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .eyebrow{ font-size:12px; letter-spacing:0.25em; text-transform:uppercase; color: var(--gold); margin-bottom:14px;}
+  .hero h1{ font-size: clamp(38px, 6vw, 64px); line-height:1.05; }
+  .hero h1 em{ font-style:italic; color: var(--gold); }
+  .hero p{ margin-top:16px; color:#D8DEE8; font-size:16px; max-width:480px; margin-left:auto; margin-right:auto; }
+  .hero-cta{
+    margin-top:32px; display:inline-flex; gap:14px; flex-wrap:wrap; justify-content:center;
+  }
+  .btn{
+    padding:13px 26px; border-radius:2px; font-size:14px; letter-spacing:0.04em;
+    border:1px solid var(--gold); transition:.2s;
+    display:inline-flex; align-items:center; gap:8px;
+  }
+  .btn-solid{ background:var(--gold); color:var(--navy-deep); font-weight:600; }
+  .btn-solid:hover{ background:#cf9c4f; }
+  .btn-ghost{ color:var(--white); border-color: rgba(255,255,255,0.4); }
+  .btn-ghost:hover{ border-color:var(--white); }
+
+  /* FILTER BAR */
+  .filters{
+    background: var(--white);
+    border-bottom:1px solid var(--line);
+    padding:18px 24px;
+    position:sticky; top:64px; z-index:40;
+  }
+  .filter-row{
+    display:flex; gap:10px; overflow-x:auto; max-width:1180px; margin:0 auto;
+    scrollbar-width:none;
+  }
+  .filter-row::-webkit-scrollbar{ display:none; }
+  .chip{
+    flex:0 0 auto;
+    padding:8px 18px; border:1px solid var(--line); border-radius:20px;
+    font-size:13px; color:var(--charcoal); background:var(--white);
+    cursor:pointer; transition:.2s;
+  }
+  .chip.active, .chip:hover{ background:var(--navy); color:var(--white); border-color:var(--navy); }
+
+  /* CATALOG */
+  .catalog{ padding:56px 24px 80px; }
+  .cat-heading{ text-align:center; margin-bottom:40px; }
+  .cat-heading .eyebrow{ color: var(--gold); }
+  .cat-heading h2{ font-size:34px; color:var(--navy-deep); }
+
+  .grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap:28px;
+  }
+  .card{
+    background: var(--white);
+    border:1px solid var(--line);
+    display:flex; flex-direction:column;
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .card:hover{ transform: translateY(-4px); box-shadow: 0 14px 28px rgba(31,58,95,0.12); }
+  .card-media{
+    aspect-ratio: 3/4;
+    position:relative;
+    display:flex; align-items:center; justify-content:center;
+    overflow:hidden;
+  }
+  .card-media .tag{
+    position:absolute; top:12px; left:12px;
+    background: var(--navy); color:var(--white);
+    font-size:10px; letter-spacing:0.08em; text-transform:uppercase;
+    padding:4px 10px;
+  }
+  .swatch-init{
+    font-family:'Cormorant Garamond', serif; font-size:15px; color: rgba(255,255,255,0.85);
+    text-align:center; padding:0 14px;
+  }
+  .card-body{ padding:18px 18px 20px; display:flex; flex-direction:column; gap:6px; flex:1; }
+  .card-cat{ font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:var(--grey); }
+  .card-name{ font-size:19px; color:var(--navy-deep); }
+  .card-price{ font-size:16px; font-weight:600; color:var(--charcoal); margin-top:2px; }
+  .card-foot{ margin-top:auto; padding-top:14px; }
+  .card-wa{
+    width:100%; text-align:center;
+    padding:10px 0; border:1px solid var(--navy); font-size:13px; letter-spacing:0.03em;
+    color:var(--navy); transition:.2s; display:flex; align-items:center; justify-content:center; gap:6px;
+  }
+  .card-wa:hover{ background:var(--navy); color:var(--white); }
+
+  /* INFO STRIP */
+  .strip{
+    background: var(--navy-deep); color:var(--white);
+    padding:40px 24px;
+  }
+  .strip-row{
+    max-width:1180px; margin:0 auto;
+    display:grid; grid-template-columns: repeat(3,1fr); gap:24px;
+    text-align:center; font-size:13px; color:#CBD3DF;
+  }
+  .strip-row strong{ display:block; color:var(--white); font-family:'Cormorant Garamond',serif; font-size:20px; margin-bottom:4px; font-weight:600; }
+
+  /* FOOTER */
+  footer{
+    background: var(--cream); padding:48px 24px 30px; border-top:1px solid var(--line);
+  }
+  .foot-wrap{
+    max-width:1180px; margin:0 auto;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px;
+  }
+  .foot-logo{ font-family:'Cormorant Garamond', serif; font-size:24px; color:var(--navy-deep); }
+  .foot-info{ font-size:13px; color:var(--grey); margin-top:8px; line-height:1.7; }
+  .foot-cta .btn{ margin-top:4px; }
+  .copy{ text-align:center; font-size:12px; color:var(--grey); margin-top:36px; }
+
+  /* FLOATING WHATSAPP (mobile-friendly) */
+  .float-wa{
+    position:fixed; bottom:22px; right:22px; z-index:60;
+    background:#25D366; color:var(--white); width:56px; height:56px;
+    border-radius:50%; display:flex; align-items:center; justify-content:center;
+    box-shadow:0 8px 20px rgba(0,0,0,0.25); font-size:26px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 980px){
+    .grid{ grid-template-columns: repeat(2, 1fr); gap:18px; }
+    .strip-row{ grid-template-columns:1fr; gap:20px; }
+  }
+  @media (max-width: 720px){
+    nav.cats{ display:none; }
+    .menu-toggle{ display:block; }
+    .wa-pill span.txt{ display:none; }
+    .hero{ padding:48px 20px 60px; }
+    .filters{ top:62px; }
+  }
+  @media (max-width: 480px){
+    .grid{ grid-template-columns: 1fr 1fr; gap:14px; }
+    .card-name{ font-size:16px; }
+    .card-body{ padding:14px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .card{ transition:none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="headbar">
+    <div class="logo">ÉP<span>O</span>CA</div>
+    <nav class="cats" aria-label="Categorías">
+      <a href="#hombre">Hombre</a>
+      <a href="#mujer">Mujer</a>
+      <a href="#smart">Smart Casual</a>
+      <a href="#accesorios">Accesorios</a>
+    </nav>
+    <a class="wa-pill" id="hero-wa" href="#" target="_blank" rel="noopener">
+      <span>💬</span><span class="txt">Consultar</span>
+    </a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">Colección 2026 · Santa Fe</div>
+  <h1>Vestite a la <em>altura</em></h1>
+  <p>Camisas, chombas, trajes y accesorios para quien no se conforma con lo genérico. Elegí tu prenda y coordinamos el pedido por WhatsApp.</p>
+  <div class="hero-cta">
+    <a href="#hombre" class="btn btn-solid">Ver catálogo</a>
+    <a href="#" class="btn btn-ghost wa-link">Hablar por WhatsApp</a>
+  </div>
+</section>
+
+<div class="filters">
+  <div class="filter-row" role="tablist" aria-label="Filtrar categoría">
+    <button class="chip active" data-filter="all">Todo</button>
+    <button class="chip" data-filter="hombre">Sastrería Masculina</button>
+    <button class="chip" data-filter="mujer">Moda Femenina</button>
+    <button class="chip" data-filter="smart">Smart Casual</button>
+    <button class="chip" data-filter="accesorios">Accesorios</button>
+  </div>
+</div>
+
+<main class="catalog">
+  <div class="wrap">
+    <div class="cat-heading">
+      <div class="eyebrow">Catálogo</div>
+      <h2>Productos destacados</h2>
+    </div>
+
+    <div class="grid" id="grid"></div>
+  </div>
+</main>
+
+<div class="strip">
+  <div class="strip-row">
+    <div><strong>Atención personalizada</strong>Coordinamos talle, color y forma de pago por WhatsApp</div>
+    <div><strong>Retiro en local</strong>San Martín 1234, Santa Fe · Lun a Sáb</div>
+    <div><strong>Envíos</strong>Coordinamos envío a domicilio dentro de la ciudad</div>
+  </div>
+</div>
+
+<footer>
+  <div class="foot-wrap">
+    <div>
+      <div class="foot-logo">Época</div>
+      <div class="foot-info">
+        Ropa formal y de oficina<br>
+        San Martín 1234, Santa Fe<br>
+        Lun–Vie 9 a 19 · Sáb 9 a 13
+      </div>
+    </div>
+    <div class="foot-cta">
+      <div class="foot-info">¿Tenés una consulta o querés hacer un pedido?</div>
+      <a href="#" class="btn btn-solid wa-link" style="margin-top:10px; color:var(--navy-deep);">Escribir por WhatsApp</a>
+    </div>
+  </div>
+  <div class="copy">© 2026 Época Indumentaria. Todos los derechos reservados.</div>
+</footer>
+
+<a href="#" class="float-wa wa-link" aria-label="Consultar por WhatsApp">💬</a>
+
+<script>
+  // ==== CONFIGURACIÓN: reemplazar por el WhatsApp real del local ====
+  const WA_NUMBER = "5493420000000"; // <-- poner el número real (con código de país, sin +)
+  const WA_BASE_MSG = "Hola! Te escribo desde la página de Época, quería consultar sobre:";
+
+  function waLink(productName){
+    const msg = productName
+      ? `${WA_BASE_MSG} ${productName}`
+      : `${WA_BASE_MSG.replace(', quería consultar sobre:', '')}`;
+    return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+  }
+
+  document.querySelectorAll('.wa-link, #hero-wa').forEach(el => {
+    el.href = waLink();
+  });
+
+  // ==== PRODUCTOS DE MUESTRA ====
+  // Reemplazar "img" por la URL de la foto real del producto cuando la tengan.
+  const products = [
+    { name:"Camisa Oxford Clásica", cat:"hombre", tag:"Sastrería Masculina", price:"$42.000", initials:"Camisa\nOxford" },
+    { name:"Traje Príncipe de Gales", cat:"hombre", tag:"Sastrería Masculina", price:"$185.000", initials:"Traje 2 Piezas" },
+    { name:"Chomba Piqué Premium", cat:"hombre", tag:"Smart Casual", price:"$28.500", initials:"Chomba\nPiqué" },
+    { name:"Blazer Entallado", cat:"mujer", tag:"Moda Femenina", price:"$96.000", initials:"Blazer\nMujer" },
+    { name:"Camisa Seda Fluida", cat:"mujer", tag:"Moda Femenina", price:"$54.000", initials:"Camisa\nSeda" },
+    { name:"Pantalón Sastrero", cat:"mujer", tag:"Moda Femenina", price:"$47.500", initials:"Pantalón\nSastrero" },
+    { name:"Corbata Seda Italiana", cat:"accesorios", tag:"Accesorios", price:"$18.000", initials:"Corbata" },
+    { name:"Cinturón Cuero Genuino", cat:"accesorios", tag:"Accesorios", price:"$24.000", initials:"Cinturón" },
+    { name:"Chaleco Smart Casual", cat:"smart", tag:"Smart Casual", price:"$39.000", initials:"Chaleco" },
+  ];
+
+  const palette = ["#1F3A5F","#26282B","#7C6A46","#3C4C63"];
+
+  function render(filter){
+    const grid = document.getElementById('grid');
+    grid.innerHTML = '';
+    products
+      .filter(p => filter === 'all' || p.cat === filter)
+      .forEach((p, i) => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <div class="card-media" style="background:${palette[i % palette.length]}">
+            <span class="tag">${p.tag}</span>
+            <div class="swatch-init">${p.initials.replace('\n','<br>')}</div>
+          </div>
+          <div class="card-body">
+            <div class="card-cat">${p.tag}</div>
+            <div class="card-name">${p.name}</div>
+            <div class="card-price">${p.price}</div>
+            <div class="card-foot">
+              <a class="card-wa" href="${waLink(p.name)}" target="_blank" rel="noopener">💬 Consultar / Pedir</a>
+            </div>
+          </div>`;
+        grid.appendChild(card);
+      });
+  }
+
+  document.querySelectorAll('.chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      render(chip.dataset.filter);
+    });
+  });
+
+  render('all');
+</script>
+
+</body>
+</html>
